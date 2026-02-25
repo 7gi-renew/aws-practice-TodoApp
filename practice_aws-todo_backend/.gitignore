@@ -30,4 +30,5 @@ lerna-debug.log*
 /src/generated/prisma
 
 node_modules/
-prisma/migration/
+prisma/migrations/*
+prisma/migrations
