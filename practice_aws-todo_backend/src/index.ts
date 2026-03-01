@@ -1,6 +1,9 @@
 import { serve } from "@hono/node-server";
+import { PrismaClient } from "../src/generated/prisma/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import "dotenv/config";
 
 const app = new Hono();
 
