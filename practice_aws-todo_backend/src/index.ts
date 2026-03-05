@@ -33,26 +33,29 @@ app.get("/todos", async (c) => {
 
 app.post("/todos", async (c) => {
   const { title } = await c.req.json();
-  const todo: Todo = {
-    id: todos.length + 1,
-    title,
-    completed: false,
-  };
+  const todo: Todo = await prisma.todo.create({
+    data: {
+      title,
+      completed: false,
+    },
+  });
 
-  todos.push(todo);
   return c.json({ todo });
 });
 
 app.put("/todos/:id", async (c) => {
   const { id } = c.req.param();
   const { completed } = await c.req.json();
-  const todo = todos.find((todo) => todo.id === Number(id));
 
-  if (!todo) {
-    return c.notFound();
-  }
+  const todo = await prisma.todo.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      completed,
+    },
+  });
 
-  todo.completed = completed;
   return c.json({ todo });
 });
 

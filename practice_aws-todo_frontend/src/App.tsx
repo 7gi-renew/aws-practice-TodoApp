@@ -69,6 +69,7 @@ function App() {
         },
         body: JSON.stringify({
           id: deleteId,
+          completed: true,
         }),
       });
 
@@ -78,8 +79,6 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-
-    console.log(deleteId);
 
     setTodoArray(todoArray.filter((elem) => elem.id != deleteId));
   };
