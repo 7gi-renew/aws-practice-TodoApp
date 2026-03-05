@@ -1,11 +1,12 @@
 import { serve } from "@hono/node-server";
-import { PrismaClient } from "../src/generated/prisma/client.js";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import "dotenv/config";
 
 const app = new Hono();
+
+const prisma = new PrismaClient();
 
 interface Todo {
   id: number;
@@ -21,11 +22,12 @@ app.use(
   }),
 );
 
-app.get("/", (c) => {
+app.get("/", async (c) => {
   return c.text("Hello Hono!");
 });
 
-app.get("/todos", (c) => {
+app.get("/todos", async (c) => {
+  const todos = await prisma.todo.findMany();
   return c.json({ todos });
 });
 

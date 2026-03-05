@@ -9,10 +9,10 @@
   "dependencies": {
     "@hono/node-server": "^1.19.9",
     "@prisma/adapter-pg": "^7.4.1",
-    "@prisma/client": "^7.4.1",
+    "@prisma/client": "^6.19.2",
     "hono": "^4.11.8",
     "pretty-json": "^0.1.1",
-    "prisma": "^7.4.1"
+    "prisma": "^6.19.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
